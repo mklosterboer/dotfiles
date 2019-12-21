@@ -19,10 +19,3 @@ for src in $(find -H "$DOTHOME" -name '*.source' -not -path '*.git')
 do
     source $src
 done
-
-
-# Disable apple Press and Hold (so I can get key repeats in vscode and azure data studio)
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-
-export VIMCONFIG=~/.vim
-export VIMDATA=~/.vim

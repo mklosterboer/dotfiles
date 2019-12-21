@@ -4,9 +4,3 @@ export DOTHOME=$HOME/dotfiles
 if [ -f $DOTHOME/system/shellrc ]; then
    source $DOTHOME/system/shellrc
 fi
-
-# Git + Bash Prompt
-if [ -f $DOTHOME/bash/bashprompt ]; then
-    source $DOTHOME/bash/bashprompt
-fi
-

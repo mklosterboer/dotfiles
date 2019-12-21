@@ -13,44 +13,6 @@ function mkd() {
 	mkdir -p "$@" && cd "$_";
 }
 
-# Open Visual Studio Code
-function vscode() {
-    if [[ $# = 0 ]]; then
-        open -a "Visual Studio Code"
-    else
-        [[ $1 = /* ]] && F="$1" || F="$PWD/${1#./}"
-        open -a "Visual Studio Code" --args "$F"
-    fi
-}
-
-# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
-function targz() {
-	local tmpFile="${@%/}.tar";
-	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
-
-	size=$(
-		stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
-		stat -c"%s" "${tmpFile}" 2> /dev/null # GNU `stat`
-	);
-
-	local cmd="";
-	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
-		# the .tar file is smaller than 50 MB and Zopfli is available; use it
-		cmd="zopfli";
-	else
-		if hash pigz 2> /dev/null; then
-			cmd="pigz";
-		else
-			cmd="gzip";
-		fi;
-	fi;
-
-	echo "Compressing .tar using \`${cmd}\`…";
-	"${cmd}" -v "${tmpFile}" || return 1;
-	[ -f "${tmpFile}" ] && rm "${tmpFile}";
-	echo "${tmpFile}.gz created successfully.";
-}
-
 # Determine size of a file or total size of a directory
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
@@ -73,31 +35,3 @@ function gitio() {
 	fi;
 	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
 }
-
-# Run `dig` and display the most useful info
-function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer;
-}
-
-# Show all the colors. ALL THE COLORS!
-function showconsolecolors() {
-    echo
-    echo -e "$(tput bold) reg  | bld  | und  | tput-command-colors$(tput sgr0)"
-
-    for i in $(seq 1 7); do
-    echo " $(tput setaf $i)Text$(tput sgr0) | $(tput bold)$(tput setaf $i)Text$(tput sgr0) | $(tput sgr 0 1)$(tput setaf $i)Text$(tput sgr0) | \$(tput setaf $i)"
-    done
-
-    echo
-    echo ' Bold            $(tput bold)'
-    echo ' Underline       $(tput sgr 0 1)'
-    echo ' Reset           $(tput sgr0)'
-    echo
-}
-
-# Copy a git repo (minus the git stuff)
-function gitexport(){
-    mkdir -p "$1"
-    git archive master | tar -x -C "$1"
-}
-
