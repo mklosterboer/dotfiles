@@ -1,0 +1,29 @@
+export DOTHOME=$HOME/dotfiles
+
+# Load Oh My ZSH!
+if [ -f $DOTHOME/ohmyzsh/ohmyzsh.zsh ]; then
+   source $DOTHOME/ohmyzsh/ohmyzsh.zsh
+fi
+
+# Execute the stuff common to all shells (well, bash and zsh anyway)
+if [ -f $DOTHOME/system/shellrc ]; then
+   source $DOTHOME/system/shellrc
+fi
+
+# Load the Homebrew-installed ZSH completions
+# https://github.com/zsh-users/zsh-completions
+if [ -d /usr/local/share/zsh-completions ]; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
+fi
+
+# Load the Homebrew-installed ZSH autosuggestions
+# https://github.com/zsh-users/zsh-autosuggestions
+if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# Load the Homebrew-installed ZSH syntax highlighting. This must be at the end of this file!
+# https://github.com/zsh-users/zsh-syntax-highlighting
+if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi

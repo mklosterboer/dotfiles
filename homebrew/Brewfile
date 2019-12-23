@@ -1,1 +1,7 @@
 brew 'gcc'
+brew 'vim'
+brew 'z'
+brew 'zsh'
+brew 'zsh-autosuggestions'
+brew 'zsh-completions'
+brew 'zsh-syntax-highlighting'
