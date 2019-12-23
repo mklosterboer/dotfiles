@@ -1,8 +1,7 @@
-# forkmantis's take on Greg's Dotfiles
-
+# Michael's take on forkmantis's take on Greg's Dotfiles
 **Dotfile Management for the Obsessive Compulsive**
 
-Dotfiles are files that contain configuration settings in Unix (and variant) systems. They usually have names that start with a dot (such as `.bashrc` and `.gitconfig`). Since the name begins with a dot (full stop), they are treated as hidden files. For guys that like to sharpen the saw such as me, they contain some of the most valuable information on a computer.
+Dotfiles are files that contain configuration settings in Unix (and variant) systems. They usually have names that start with a dot (such as `.bashrc` and `.gitconfig`). Since the name begins with a dot (full stop), they are treated as hidden files. As I'm starting to venture into vim and more CLI based workflows, it was suggested to me to start keeping track of my dot files so I could carry them between machines.
 
 These are my dotfiles.
 
