@@ -1,6 +1,6 @@
 [user]
-	name = Will Killian
-	email = github.user@forkmantis.com
+	name = Michael Klosterboer
+	email = mklosterboer@gmail.com
 [push]
     default = simple
 [alias]
@@ -16,7 +16,7 @@
 
     # Fetch all remotes
     fa = fetch --all
-    
+
     # Push it REAL GOOD
     pushitrealgood = !echo "Push it" && git push origin && echo "PUSH IT REAL GOOD"
 
