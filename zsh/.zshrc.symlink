@@ -1,5 +1,11 @@
 export DOTHOME=$HOME/dotfiles
 
+if grep -q Microsoft /proc/version; then
+    export SHARE=/home/linuxbrew/.linuxbrew/share/
+else
+    export SHARE=/usr/local/share/
+fi
+
 # Load Oh My ZSH!
 if [ -f $DOTHOME/ohmyzsh/ohmyzsh.zsh ]; then
    source $DOTHOME/ohmyzsh/ohmyzsh.zsh
@@ -12,18 +18,24 @@ fi
 
 # Load the Homebrew-installed ZSH completions
 # https://github.com/zsh-users/zsh-completions
-if [ -d /usr/local/share/zsh-completions ]; then
-    fpath=(/usr/local/share/zsh-completions $fpath)
+if [ -d $SHARE/zsh-completions ]; then
+    fpath=($SHARE/zsh-completions $fpath)
 fi
 
 # Load the Homebrew-installed ZSH autosuggestions
 # https://github.com/zsh-users/zsh-autosuggestions
-if [ -f  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f  $SHARE/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source $SHARE/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+
+ # Remove host name from prompt
+ prompt_context(){}
+ prompt_dir() {
+     prompt_segment blue $$CURRENT_FG '%2~'
+ }
 
 # Load the Homebrew-installed ZSH syntax highlighting. This must be at the end of this file!
 # https://github.com/zsh-users/zsh-syntax-highlighting
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f $SHARE/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source $SHARE/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
