@@ -89,9 +89,6 @@ autocmd BufWinEnter *.* silent loadview"
      source ~/.vimrc.plug
  endif
 
-" Enable Markdown folding
-set foldenable
-
 " Make airline appear all the time
 set laststatus=2
 
@@ -141,3 +138,7 @@ endif
 
 " Turn on syntax highlighting.
 syntax on
+
+" Turn on cursorLine in Insert Mode
+:autocmd InsertEnter * set cul
+:autocmd InsertLeave * set nocul
